@@ -20,7 +20,7 @@ class Server:
         self.input_thread = threading.Thread(target=self.async_receive)     # Create the 2nd thread
         self.input_thread.start()                                           # and start it..
 
-    def async_receive(self):        # This runs on the main thread
+    def async_receive(self):     
         print("receive thread started!")
         while True:
             try:
@@ -29,7 +29,7 @@ class Server:
                 print(traceback.format_exc())
                 break
 
-    def async_input(self):              # Runs on a second separate thread
+    def async_input(self):           
         print("input thread started!")
         while True:
             text = input()                      # Blocking call. Waits for the input
@@ -53,14 +53,14 @@ class Client:
         self.input_thread = threading.Thread(target=self.async_input)  # Create the 2nd thread
         self.input_thread.start()  # and start it..
 
-    def async_read(self):        # This runs on the main thread
+    def async_read(self):     
         while True:
             try:
                 print(self.m_socket.recv(1024))     # Blocking call. Waits for something to be read
             except:
                 break
 
-    def async_input(self):              # Runs on a second separate thread
+    def async_input(self):             
         print("input thread started!")
         while True:
             text = input()                      # Blocking call. Waits for the input
